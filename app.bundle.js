@@ -2,8 +2,9 @@
 var riot = require('riot')
 var test = require('./tags/test.tag')
 var hello = require('./tags/hello.tag')
-riot.mount(test)
-riot.mount(hello)
+// riot.mount(test)
+// riot.mount(hello)
+riot.mount('*')
 
 },{"./tags/hello.tag":3,"./tags/test.tag":4,"riot":2}],2:[function(require,module,exports){
 /* Riot v2.2.4, @license MIT, (c) 2015 Muut Inc. + contributors */
