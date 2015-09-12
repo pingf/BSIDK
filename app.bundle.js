@@ -1,9 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var riot = require('riot')
 var test = require('./tags/test.tag')
+var hello = require('./tags/hello.tag')
 riot.mount(test)
+riot.mount(hello)
 
-},{"./tags/test.tag":3,"riot":2}],2:[function(require,module,exports){
+},{"./tags/hello.tag":3,"./tags/test.tag":4,"riot":2}],2:[function(require,module,exports){
 /* Riot v2.2.4, @license MIT, (c) 2015 Muut Inc. + contributors */
 
 ;(function(window, undefined) {
@@ -1376,6 +1378,12 @@ riot.mountTo = riot.mount
 })(typeof window != 'undefined' ? window : void 0);
 
 },{}],3:[function(require,module,exports){
+var riot = require('riot');
+module.exports = riot.tag('hello', '<h2>hello hiahiahiahia</h2>', function(opts) {
+
+});
+
+},{"riot":2}],4:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('test', '<h2>hiahiahiahia</h2>', function(opts) {
 
