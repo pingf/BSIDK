@@ -2,9 +2,8 @@
 var riot = require('riot')
 var test = require('./tags/test.tag')
 var hello = require('./tags/hello.tag')
-// riot.mount(test)
-// riot.mount(hello)
-riot.mount('*')
+riot.mount(test)
+riot.mount(hello, {name: 'Jesse'})
 
 },{"./tags/hello.tag":3,"./tags/test.tag":4,"riot":2}],2:[function(require,module,exports){
 /* Riot v2.2.4, @license MIT, (c) 2015 Muut Inc. + contributors */
@@ -1380,7 +1379,7 @@ riot.mountTo = riot.mount
 
 },{}],3:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('hello', '<h2>hello hiahiahiahia</h2>', function(opts) {
+module.exports = riot.tag('hello', '<h2>hello {opts.name}</h2>', function(opts) {
 
 });
 
