@@ -10920,8 +10920,7 @@ module.exports = riot.tag('test', '<h2>hiahiahiahia</h2>', function(opts) {
 
 },{"riot":3}],8:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ item, i in items }"> <p class="{i%2 ? \'red\':\'green\'}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', function(opts) {
-
+module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ item, i in items }"> <p class="{i%2 ? \'red\':\'green\'}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', 'todo li .red, [riot-tag="todo"] li .red{ font-size: 36px; }', function(opts) {
     this.items = []
 
     this.add = function(e) {

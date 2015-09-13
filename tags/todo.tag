@@ -13,7 +13,11 @@
     <input>
     <button>Add #{ items.length + 1 }</button>
   </form>
-
+<style scoped>
+li .red {
+  font-size: 36px;
+}
+</style>
     this.items = []
 
     add(e) {
