@@ -1,14 +1,14 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var riot = require('riot')
-var d3 = require('d3')
 var test = require('./tags/test.tag')
 var hello = require('./tags/hello.tag')
 var sel = require('./tags/sel.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
+d3.select('sel').html('<h1 style="color:red;"><b>hacked</b></h1>')
 
-},{"./tags/hello.tag":4,"./tags/sel.tag":5,"./tags/test.tag":6,"d3":2,"riot":3}],2:[function(require,module,exports){
+},{"./tags/hello.tag":4,"./tags/sel.tag":5,"./tags/test.tag":6,"riot":3}],2:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.6"
@@ -10895,6 +10895,7 @@ module.exports = riot.tag('hello', '<h2>hello {opts.name}</h2>', function(opts) 
 var riot = require('riot');
 module.exports = riot.tag('sel', '<h3 id="title">test sel</h3>', function(opts) {
 
+var d3 = require('d3')
     this.on('mount', function() {
       d3.select('#title').html('!!!!!!!')
 
@@ -10903,7 +10904,7 @@ module.exports = riot.tag('sel', '<h3 id="title">test sel</h3>', function(opts) 
 
 });
 
-},{"riot":3}],6:[function(require,module,exports){
+},{"d3":2,"riot":3}],6:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('test', '<h2>hiahiahiahia</h2>', function(opts) {
 
