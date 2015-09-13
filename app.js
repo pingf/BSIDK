@@ -1,5 +1,8 @@
 var riot = require('riot')
+var d3 = require('d3')
 var test = require('./tags/test.tag')
 var hello = require('./tags/hello.tag')
+var sel = require('./tags/sel.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
+riot.mount(sel)
