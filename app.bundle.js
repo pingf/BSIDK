@@ -6,7 +6,6 @@ var sel = require('./tags/sel.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
-d3.select('sel').html('<h1 style="color:red;"><b>hacked</b></h1>')
 
 },{"./tags/hello.tag":4,"./tags/sel.tag":5,"./tags/test.tag":6,"riot":3}],2:[function(require,module,exports){
 !function() {
@@ -10897,9 +10896,9 @@ module.exports = riot.tag('sel', '<h3 id="title">test sel</h3>', function(opts) 
 
 var d3 = require('d3')
     this.on('mount', function() {
-      d3.select('#title').html('!!!!!!!')
+        d3.select('sel').html('<h1 style="color:green;"><b>hacked</b></h1>')
 
-      })
+    })
     console.log(d3.version)
 
 });
