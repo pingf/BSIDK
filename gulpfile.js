@@ -5,6 +5,11 @@ var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 
 
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+// var mqpacker = require('css-mqpacker');
+// var csswring = require('csswring');
+
 gulp.task('bfy', function(){
     var b = browserify('./app.js');
     var s = b.transform(riotify).bundle();
@@ -14,3 +19,13 @@ gulp.task('bfy', function(){
 });
 
 
+
+gulp.task('css', function () {
+    var processors = [
+        autoprefixer({browsers: ['last 1 version']}),
+    ];
+    return gulp.src('./*.css')
+        .pipe(postcss(processors))
+        .pipe(rename('app.bundle.css'))
+        .pipe(gulp.dest('./'));
+});
