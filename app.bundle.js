@@ -6,13 +6,15 @@ var hello = require('./tags/hello.tag')
 var sel = require('./tags/sel.tag')
 var todo = require('./tags/todo.tag')
 var hello2 = require('./tags/hello2.tag')
+var todo2 = require('./tags/todo2.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
 riot.mount(todo)
 riot.mount(hello2)
+riot.mount(todo2)
 
-},{"./tags/hello.tag":4,"./tags/hello2.tag":5,"./tags/sel.tag":6,"./tags/test.tag":7,"./tags/todo.tag":8,"d3":2,"riot":3}],2:[function(require,module,exports){
+},{"./tags/hello.tag":4,"./tags/hello2.tag":5,"./tags/sel.tag":6,"./tags/test.tag":7,"./tags/todo.tag":8,"./tags/todo2.tag":9,"d3":2,"riot":3}],2:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.6"
@@ -10927,6 +10929,23 @@ module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ ite
       var input = e.target[0]
       this.items.push(input.value)
       input.value = ''
+    }.bind(this);
+
+});
+
+},{"riot":3}],9:[function(require,module,exports){
+var riot = require('riot');
+module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <ul> <li each="{ item, i in items }"> <p onclick="{click}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', function(opts) {
+    this.items = []
+
+    this.add = function(e) {
+      var input = e.target[0]
+      this.items.push(input.value)
+      input.value = ''
+    }.bind(this);
+
+    this.click = function(e) {
+      console.log(e.target)
     }.bind(this);
 
 });
