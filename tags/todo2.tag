@@ -2,7 +2,7 @@
 
   <!-- layout -->
   <h3>{ opts.title }</h3>
-
+  <h1>haha123</h1>
   <ul>
     <li each={ item, i in items }>
       <p onclick={click}>{ item }</p>

@@ -29,3 +29,12 @@ gulp.task('css', function () {
         .pipe(rename('app.bundle.css'))
         .pipe(gulp.dest('./'));
 });
+
+var watch = require('gulp-watch');
+
+
+gulp.task('watch', function () {
+    watch(['app.js','tags/*.tag'], function() {
+        gulp.start('bfy');
+    })
+});

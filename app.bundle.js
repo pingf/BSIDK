@@ -10935,7 +10935,7 @@ module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ ite
 
 },{"riot":3}],9:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <ul> <li each="{ item, i in items }"> <p onclick="{click}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', function(opts) {
+module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <h1>haha123</h1> <ul> <li each="{ item, i in items }"> <p onclick="{click}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', function(opts) {
     this.items = []
 
     this.add = function(e) {
