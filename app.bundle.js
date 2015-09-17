@@ -10935,19 +10935,46 @@ module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ ite
 
 },{"riot":3}],9:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <h1>haha123</h1> <ul> <li each="{ item, i in items }"> <p onclick="{click}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', function(opts) {
-    this.items = []
+module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <h1>haha123</h1> <ul id="auto_list"> <li each="{ item, i in items }" id="{item}"> <p onclick="{click}" riot-style="{move(i)}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', 'todo2 ul, [riot-tag="todo2"] ul{ list-style-type: none; padding: 0; position: relative; border: 1px solid black; height: 390px; overflow-y: auto; overflow-x: hidden; width: 200px; } todo2 ul li, [riot-tag="todo2"] ul li{ height: 50px; width: 100%; line-height: 50px; padding-left: 20px; border: 1px solid blue; background: #eee; position: absolute; top: 0; left: 0; -webkit-transition: all .5s linear; transition: all .5s linear; }', function(opts) {
+
+i=1
+        this.items = []
+     window.setInterval(function(){
+       console.log(this.items)
+
+          t=document.getElementById(i)//this.items[i])
+          console.log(t);
+          console.log('hahahahah');
+          var trans='translate(0,'+100*i+'%)';
+          console.log(trans);
+          t.style.transform=trans;
+          i=i+1;
+
+        console.log('haha')
+    },500);
+
+    this.on('mount', function(){
+      console.log('mount')
+    }.bind(this))
+
+
 
     this.add = function(e) {
+      console.log('add')
       var input = e.target[0]
+      console.log(auto_list)
+
       this.items.push(input.value)
       input.value = ''
+
+
+
     }.bind(this);
 
     this.click = function(e) {
       console.log(e.target)
     }.bind(this);
-
+    
 });
 
 },{"riot":3}]},{},[1]);
