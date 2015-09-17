@@ -34,7 +34,7 @@ var watch = require('gulp-watch');
 
 
 gulp.task('watch', function () {
-    watch(['app.js','tags/*.tag'], function() {
+    watch(['app.js','tags/*.tag','index.html'], function() {
         gulp.start('bfy');
     })
 });

@@ -7,14 +7,16 @@ var sel = require('./tags/sel.tag')
 var todo = require('./tags/todo.tag')
 var hello2 = require('./tags/hello2.tag')
 var todo2 = require('./tags/todo2.tag')
+var dt3 = require('./tags/dt3.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
 riot.mount(todo)
 riot.mount(hello2)
 riot.mount(todo2)
+riot.mount(dt3)
 
-},{"./tags/hello.tag":4,"./tags/hello2.tag":5,"./tags/sel.tag":6,"./tags/test.tag":7,"./tags/todo.tag":8,"./tags/todo2.tag":9,"d3":2,"riot":3}],2:[function(require,module,exports){
+},{"./tags/dt3.tag":4,"./tags/hello.tag":5,"./tags/hello2.tag":6,"./tags/sel.tag":7,"./tags/test.tag":8,"./tags/todo.tag":9,"./tags/todo2.tag":10,"d3":2,"riot":3}],2:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.6"
@@ -10893,11 +10895,41 @@ riot.mountTo = riot.mount
 
 },{}],4:[function(require,module,exports){
 var riot = require('riot');
+module.exports = riot.tag('dt3', ' <h3>hiahiahiahia</h3> <ul> <li each="{ item, i in items }"> <p>{ item }</p> </li> </ul>', function(opts) {
+      this.items=[
+        'a','b','c','d'
+      ]
+
+  var data =[
+    { width: 100, color: 23},
+    { width: 150, color: 40},
+    { width: 200, color: 63},
+    { width: 350, color: 33},
+  ]
+  this.on('mount',function(){
+      var sel = d3.select('dt3').selectAll('li').data(data);
+      sel.exit().remove();
+      sel.attr('class','h-bar')
+      .style('width', function(d,i){
+        console.log(d.width)
+        console.log(sel)
+        return d.width+'px';
+      }).style('border-style', function(d,i){
+        console.log(d.width)
+        console.log(sel)
+         return 'solid';
+      });
+    });
+  
+});
+
+},{"riot":3}],5:[function(require,module,exports){
+var riot = require('riot');
 module.exports = riot.tag('hello', '<h2>hello {opts.name}</h2>', function(opts) {
 
 });
 
-},{"riot":3}],5:[function(require,module,exports){
+},{"riot":3}],6:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('hello2', '<h2>hello {name}</h2>', function(opts) {
 
@@ -10905,7 +10937,7 @@ module.exports = riot.tag('hello2', '<h2>hello {name}</h2>', function(opts) {
 
 });
 
-},{"riot":3}],6:[function(require,module,exports){
+},{"riot":3}],7:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('sel', '<h3 id="title">test sel</h3>', function(opts) {
 
@@ -10914,13 +10946,13 @@ module.exports = riot.tag('sel', '<h3 id="title">test sel</h3>', function(opts) 
 
 });
 
-},{"riot":3}],7:[function(require,module,exports){
+},{"riot":3}],8:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('test', '<h2>hiahiahiahia</h2>', function(opts) {
 
 });
 
-},{"riot":3}],8:[function(require,module,exports){
+},{"riot":3}],9:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ item, i in items }"> <p class="{i%2 ? \'red\':\'green\'}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', 'todo li .red, [riot-tag="todo"] li .red{ font-size: 36px; }', function(opts) {
     this.items = []
@@ -10933,7 +10965,7 @@ module.exports = riot.tag('todo', ' <h3>{ opts.title }</h3> <ul> <li each="{ ite
 
 });
 
-},{"riot":3}],9:[function(require,module,exports){
+},{"riot":3}],10:[function(require,module,exports){
 var riot = require('riot');
 module.exports = riot.tag('todo2', ' <h3>{ opts.title }</h3> <h1>haha123</h1> <ul id="auto_list"> <li each="{ item, i in items }" id="{item}"> <p onclick="{click}" riot-style="{move(i)}">{ item }</p> </li> </ul> <form onsubmit="{ add }"> <input> <button>Add #{ items.length + 1 }</button> </form>', 'todo2 ul, [riot-tag="todo2"] ul{ list-style-type: none; padding: 0; position: relative; border: 1px solid black; height: 390px; overflow-y: auto; overflow-x: hidden; width: 200px; } todo2 ul li, [riot-tag="todo2"] ul li{ height: 50px; width: 100%; line-height: 50px; padding-left: 20px; border: 1px solid blue; background: #eee; position: absolute; top: 0; left: 0; -webkit-transition: all .5s linear; transition: all .5s linear; }', function(opts) {
 
