@@ -8,6 +8,8 @@ var todo = require('./tags/todo.tag')
 var hello2 = require('./tags/hello2.tag')
 var todo2 = require('./tags/todo2.tag')
 var dt3 = require('./tags/dt3.tag')
+var weight_item = require('./tags/weight_item.tag')
+var weight_list = require('./tags/weight_list.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
@@ -15,8 +17,10 @@ riot.mount(todo)
 riot.mount(hello2)
 riot.mount(todo2)
 riot.mount(dt3)
+riot.mount(weight_item)
+riot.mount(weight_list)
 
-},{"./tags/dt3.tag":4,"./tags/hello.tag":5,"./tags/hello2.tag":6,"./tags/sel.tag":7,"./tags/test.tag":8,"./tags/todo.tag":9,"./tags/todo2.tag":10,"d3":2,"riot":3}],2:[function(require,module,exports){
+},{"./tags/dt3.tag":4,"./tags/hello.tag":5,"./tags/hello2.tag":6,"./tags/sel.tag":7,"./tags/test.tag":8,"./tags/todo.tag":9,"./tags/todo2.tag":10,"./tags/weight_item.tag":11,"./tags/weight_list.tag":12,"d3":2,"riot":3}],2:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.6"
@@ -11006,6 +11010,30 @@ i=1
     this.click = function(e) {
       console.log(e.target)
     }.bind(this);
+    
+});
+
+},{"riot":3}],11:[function(require,module,exports){
+var riot = require('riot');
+module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.text}</span> <span class="item-value" onclick="{add}">{opts.value}</span> </div>', function(opts) {
+      this.add = function(e) {
+        value = parseInt(e.target.innerHTML);
+        e.target.innerHTML=value+1;
+      }.bind(this);
+    
+});
+
+},{"riot":3}],12:[function(require,module,exports){
+var riot = require('riot');
+module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-item text="{item.text}" value="{item.value}"></weight-item> </div>', function(opts) {
+      this.items=[
+        {text:'haha',value:1},
+        {text:'hiahia',value:4},
+        {text:'hehe',value:2},
+        {text:'jesse',value:100},
+        {text:'meng',value:200},
+        {text:'chao',value:400},
+      ]
     
 });
 
