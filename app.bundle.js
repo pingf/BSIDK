@@ -10915,12 +10915,8 @@ module.exports = riot.tag('dt3', ' <h3>hiahiahiahia</h3> <ul> <li each="{ item, 
       sel.exit().remove();
       sel.attr('class','h-bar')
       .style('width', function(d,i){
-        console.log(d.width)
-        console.log(sel)
         return d.width+'px';
       }).style('border-style', function(d,i){
-        console.log(d.width)
-        console.log(sel)
          return 'solid';
       });
     });
@@ -11015,25 +11011,76 @@ i=1
 
 },{"riot":3}],11:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.text}</span> <span class="item-value" onclick="{add}">{opts.value}</span> </div>', function(opts) {
+module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.text}</span> <span class="item-value" onclick="{add}">{opts.value.v}</span> </div>', function(opts) {
       this.add = function(e) {
-        value = parseInt(e.target.innerHTML);
-        e.target.innerHTML=value+1;
+        opts.value.pp();
       }.bind(this);
+      this.on('mount updated',function(){
+        d3.selectAll('weight-item').select('div')
+        .style('border', function(d,i){
+          return '1px solid';
+        })
+        .style('width', function(d,i){
+          if(d.value.v<100)
+          return d.value.v*100+'px';
+          else{
+            return d.value.v+'px';
+          }
+        });
+        this.parent.update();
+      })
     
 });
 
 },{"riot":3}],12:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-item text="{item.text}" value="{item.value}"></weight-item> </div>', function(opts) {
+module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-item text="{item.text}" value="{item.value}"></weight-item> </div>', '/*div { transition: all 3s linear; }*/', function(opts) {
+    console.log(this)
       this.items=[
-        {text:'haha',value:1},
-        {text:'hiahia',value:4},
-        {text:'hehe',value:2},
-        {text:'jesse',value:100},
-        {text:'meng',value:200},
-        {text:'chao',value:400},
+        {text:'haha',value:new V(1)},
+        {text:'hiahia',value:new V(4)},
+        {text:'hehe',value:new V(2)},
+        {text:'hehe2',value:new V(3)},
       ]
+
+      function V(value) {
+        this.v = value;
+        this.pp = function (){
+          this.v=this.v+1;
+        }
+      };
+
+      this.on('mount',function(){
+        var sel = d3.select('weight-list').selectAll('weight-item').data(this.items);
+      });
+
+      this.on('updated', function(){
+
+        d3.selectAll('weight-item').select('div')
+        .style("position","relative")
+        .style("top","0px")
+        .transition()
+        .duration(3000)
+        .style("top","300px")
+        .style('background','red')
+        .transition()
+        .duration(2000)
+        .style('background','blue')
+        .style("top","100px");
+      })
+
+     function pos(){
+       var len=self.items.length;
+       var values=[];
+       var indices = new Array(len);
+
+       for(i in this.items){
+         values.append(self.items.v);
+       }
+       for (var i = 0; i < len; ++i) indices[i] = i;
+       indices.sort(function (a, b) { return values[a] < values[b] ? -1 : values[a] > values[b] ? 1 : 0; });
+       return indices;
+     }
     
 });
 

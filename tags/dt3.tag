@@ -25,12 +25,8 @@
       sel.exit().remove();
       sel.attr('class','h-bar')
       .style('width', function(d,i){
-        console.log(d.width)
-        console.log(sel)
         return d.width+'px';
       }).style('border-style', function(d,i){
-        console.log(d.width)
-        console.log(sel)
          return 'solid';
       });
     });
