@@ -2,11 +2,11 @@
     <div each={item in items}>
       <weight-item text={item.text} value={item.value}></weight-item>
     </div>
-<style>
-/*div {
-transition: all 3s linear;
-}*/
-</style>
+    <style scoped>
+    div {
+        position: relative;
+    }
+    </style>
     <script>
     console.log(this)
       this.items=[
@@ -30,29 +30,52 @@ transition: all 3s linear;
       this.on('updated', function(){
 
         d3.selectAll('weight-item').select('div')
-        .style("position","relative")
-        .style("top","0px")
         .transition()
-        .duration(3000)
-        .style("top","300px")
+        .duration(1000)
+        .style("top",function(d,i){
+          var p = pos();
+          // console.log(i,p[i])
+          return (p[i]-i)*32+'px'
+        })
         .style('background','red')
-        .transition()
-        .duration(2000)
-        .style('background','blue')
-        .style("top","100px");
       })
 
+      var self=this;
      function pos(){
        var len=self.items.length;
-       var values=[];
-       var indices = new Array(len);
-
-       for(i in this.items){
-         values.append(self.items.v);
+       var values=new Array(len);
+       for (var i = 0; i < len; ++i){
+         values[i]=self.items[i].value.v;
        }
-       for (var i = 0; i < len; ++i) indices[i] = i;
-       indices.sort(function (a, b) { return values[a] < values[b] ? -1 : values[a] > values[b] ? 1 : 0; });
+
+       var sorted = values.slice().sort(function(a,b){return b-a})
+       return values.slice().map(function(v){ return sorted.indexOf(v)+1 });       
+
+       var origin=values.slice()
+       values.sort()
+       var indices=new Array(len)
+       for (var i = 0; i < len; ++i){
+         indices[i]=values.indexOf(origin[i]);
+       }
+       console.log(indices)
        return indices;
      }
+     function sortWithIndeces(toSort) {
+       for (var i = 0; i < toSort.length; i++) {
+         toSort[i] = [toSort[i], i];
+       }
+       toSort.sort(function(left, right) {
+         return left[0] < right[0] ? -1 : 1;
+       });
+       toSort.sortIndices = [];
+       for (var j = 0; j < toSort.length; j++) {
+         toSort.sortIndices.push(toSort[j][1]);
+         toSort[j] = toSort[j][0];
+       }
+       return toSort.sortIndices;
+     }
+
+
     </script>
+
 </weight-list>

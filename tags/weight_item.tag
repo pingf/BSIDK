@@ -3,9 +3,18 @@
         <span class='item-text'>{opts.text}</span>
         <span class='item-value' onclick={add}>{opts.value.v}</span>
     </div>
+    <style scoped>
+    div {
+        height: 30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    </style>
 
     <script>
       add(e){
+        opts.value.pp();
         opts.value.pp();
       }
       this.on('mount updated',function(){

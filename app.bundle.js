@@ -11011,8 +11011,9 @@ i=1
 
 },{"riot":3}],11:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.text}</span> <span class="item-value" onclick="{add}">{opts.value.v}</span> </div>', function(opts) {
+module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.text}</span> <span class="item-value" onclick="{add}">{opts.value.v}</span> </div>', 'weight-item div, [riot-tag="weight-item"] div{ height: 30px; position: absolute; top: 0; left: 0; }', function(opts) {
       this.add = function(e) {
+        opts.value.pp();
         opts.value.pp();
       }.bind(this);
       this.on('mount updated',function(){
@@ -11034,7 +11035,7 @@ module.exports = riot.tag('weight-item', '<div> <span class="item-text">{opts.te
 
 },{"riot":3}],12:[function(require,module,exports){
 var riot = require('riot');
-module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-item text="{item.text}" value="{item.value}"></weight-item> </div>', '/*div { transition: all 3s linear; }*/', function(opts) {
+module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-item text="{item.text}" value="{item.value}"></weight-item> </div>', 'weight-list div, [riot-tag="weight-list"] div{ position: relative; }', function(opts) {
     console.log(this)
       this.items=[
         {text:'haha',value:new V(1)},
@@ -11057,30 +11058,52 @@ module.exports = riot.tag('weight-list', '<div each="{item in items}"> <weight-i
       this.on('updated', function(){
 
         d3.selectAll('weight-item').select('div')
-        .style("position","relative")
-        .style("top","0px")
         .transition()
-        .duration(3000)
-        .style("top","300px")
+        .duration(1000)
+        .style("top",function(d,i){
+          var p = pos();
+
+          return (p[i]-i)*32+'px'
+        })
         .style('background','red')
-        .transition()
-        .duration(2000)
-        .style('background','blue')
-        .style("top","100px");
       })
 
+      var self=this;
      function pos(){
        var len=self.items.length;
-       var values=[];
-       var indices = new Array(len);
-
-       for(i in this.items){
-         values.append(self.items.v);
+       var values=new Array(len);
+       for (var i = 0; i < len; ++i){
+         values[i]=self.items[i].value.v;
        }
-       for (var i = 0; i < len; ++i) indices[i] = i;
-       indices.sort(function (a, b) { return values[a] < values[b] ? -1 : values[a] > values[b] ? 1 : 0; });
+
+       var sorted = values.slice().sort(function(a,b){return b-a})
+       return values.slice().map(function(v){ return sorted.indexOf(v)+1 });       
+
+       var origin=values.slice()
+       values.sort()
+       var indices=new Array(len)
+       for (var i = 0; i < len; ++i){
+         indices[i]=values.indexOf(origin[i]);
+       }
+       console.log(indices)
        return indices;
      }
+     function sortWithIndeces(toSort) {
+       for (var i = 0; i < toSort.length; i++) {
+         toSort[i] = [toSort[i], i];
+       }
+       toSort.sort(function(left, right) {
+         return left[0] < right[0] ? -1 : 1;
+       });
+       toSort.sortIndices = [];
+       for (var j = 0; j < toSort.length; j++) {
+         toSort.sortIndices.push(toSort[j][1]);
+         toSort[j] = toSort[j][0];
+       }
+       return toSort.sortIndices;
+     }
+
+
     
 });
 
