@@ -5,10 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "d3": "^3.5.6",
+    "jquery": "^2.1.4",
     "riot": "^2.2.4"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
+    "browserify-shim": "^3.8.10",
     "gulp": "^3.9.0",
     "gulp-postcss": "^6.0.0",
     "gulp-rename": "^1.2.2",
@@ -29,5 +31,15 @@
   "bugs": {
     "url": "https://github.com/pingf/BSIDK/issues"
   },
-  "homepage": "https://github.com/pingf/BSIDK#readme"
+  "homepage": "https://github.com/pingf/BSIDK#readme",
+
+  "browserify": {
+      "transform": [
+        "browserify-shim"
+      ]
+  },
+  "browserify-shim": {
+    "./node_modules/jquery/dist/jquery.js": "$"
+  }
+
 }

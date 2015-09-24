@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-  <ul>
+  <!-- <ul>
     <li>haha</li>
     <li>hehe</li>
   </ul>
@@ -11,10 +11,19 @@
   <hello></hello>
   <sel></sel>
   <todo></todo>
-  <hello2></hello2>
+  <hello2></hello2> -->
   <!-- <dt3></dt3> -->
-  <weight-list></weight_list>
-    <script src="./app.bundle.js"></script>
+  <!-- <weight-list></weight_list> -->
+  <m-button type='button' onclick='window.click()'>world</m-button>
     <link rel="stylesheet" href="/app.bundle.css" media="screen" title="no title" charset="utf-8">
+    <script src="./app.bundle.js"></script>
+    <script>
+    function click(){
+      console.log('click outside')
+    }
+    $(function(){
+      console.log('jquery ready')
+    })
+    </script>
   </body>
   </html>

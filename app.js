@@ -9,6 +9,7 @@ var todo2 = require('./tags/todo2.tag')
 var dt3 = require('./tags/dt3.tag')
 var weight_item = require('./tags/weight_item.tag')
 var weight_list = require('./tags/weight_list.tag')
+var m_button = require('./tags/m_button.tag')
 riot.mount(test)
 riot.mount(hello, {name: 'Jesse'})
 riot.mount(sel)
@@ -18,3 +19,8 @@ riot.mount(todo2)
 riot.mount(dt3)
 riot.mount(weight_item)
 riot.mount(weight_list)
+riot.mount(m_button)
+
+var $ = require("jquery");
+module.exports = $
+global.$= $
