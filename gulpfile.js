@@ -10,7 +10,7 @@ var autoprefixer = require('autoprefixer');
 // var mqpacker = require('css-mqpacker');
 // var csswring = require('csswring');
 
-gulp.task('bfy', function(){
+gulp.task('bfy-riot', function(){
     var b = browserify('./app.js');
     var s = b.transform(riotify).bundle();
     s.pipe(source('app.js'))
@@ -33,7 +33,7 @@ gulp.task('css', function () {
 var watch = require('gulp-watch');
 
 
-gulp.task('watch', function () {
+gulp.task('watch-tag', function () {
     watch(['app.js','tags/*.tag','index.html'], function() {
         gulp.start('bfy');
     })
