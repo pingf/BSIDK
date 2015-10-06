@@ -40,16 +40,16 @@ class Button extends React.Component {
 var ButtonStyles = StyleSheet.create({
 
   normalStyle: {
-    backgroundColor: '#E6E6E6',
-    border: 'none rgba(0, 0, 0, 0)',
-    borderRadius: 3,
-    color: 'rgba(0, 0, 0, 0.70)',
+    backgroundColor: '#002b36',
+    color: '#2aa198',
+    border: 'solid 2.5px #001f27',
+    borderRadius: '8%',
     cursor: 'pointer',
     display: 'inline-block',
-    fontFamily: 'inherit',
+    fontFamily: 'Microsoft YaHei Mono',
     fontSize: '100%',
     lineHeight: 'normal',
-    padding: '0.5em 1em',
+    padding: '0.4em 0.8em',
     userSelect: 'none',
     textAlign: 'center',
     textDecoration: 'none',
@@ -63,8 +63,8 @@ var ButtonStyles = StyleSheet.create({
   },
 
   hoverStyle: {
-    color: '#000',
-    backgroundImage: 'linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10))'
+    color: '#1c88c3',
+    border: 'solid 2.5px #1c88c3',
   },
 
   focusStyle: {
