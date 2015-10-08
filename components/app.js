@@ -7,5 +7,5 @@ React.render(
 );
 
 function clickHandle(){
-    console.log('haha');
+    console.log('hahahaha');
 }

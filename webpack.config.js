@@ -3,8 +3,7 @@ module.exports = {
     entry: {
         app: ["./components/app"],
         button: ["./components/button"],
-        buttonHaha: ["./components/buttonHaha"],
-        reacts: ['react','react-style'],
+        react: ['react'],
     },
     output: {
         path: "bundle",
@@ -16,17 +15,16 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-                name: 'react',
-                filename:"reacts.js",
-                chunks:['button','buttonHaha','app','react'],
-        }),
-
         // new webpack.optimize.CommonsChunkPlugin({
         //         name: "reactStyle",
         //         filename:"react-style.js",
-        //         chunks:['button','buttonHaha','reactStyle'],
+        //         chunks:['button','reactStyle'],
         // }),
+        new webpack.optimize.CommonsChunkPlugin({
+                name: 'react',
+                filename:"react.js",
+                chunks:['app','button','react'],
+        }),
 
         new webpack.optimize.CommonsChunkPlugin({
                 name: "button",
