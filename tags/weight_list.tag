@@ -49,7 +49,7 @@
        }
 
        var sorted = values.slice().sort(function(a,b){return b-a})
-       return values.slice().map(function(v){ return sorted.indexOf(v)+1 });       
+       return values.slice().map(function(v){ return sorted.indexOf(v)+1 });
 
        var origin=values.slice()
        values.sort()
