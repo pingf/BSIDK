@@ -1,48 +1,36 @@
-var webpack = require('webpack');
 var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
+    devtool: 'eval',
     entry: {
-        webpack:['webpack-dev-server/client?http://0.0.0.0:3000', 'webpack/hot/only-dev-server' ],
-        app: ["./components/app"],
-        button: ["./components/button"],
-        react: ['react']
+        button: ['./src/components/button'],
+        button0: ['./src/components/button0'],
+        index:'./src/index'
     },
     output: {
-        // path: "bundle",
-        // filename: "[name].js",
-        // // chunkFilename: "[id].chunk.js",
-        // publicPath: '/static/'
-
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
+        filename: '[name].js',
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-                name: 'react',
-                filename:"react.js",
-                chunks:['button','react'],
-        }),
-
-        new webpack.optimize.CommonsChunkPlugin({
-                name: "button",
-                filename:"button.js",
-                chunks:['app','button'],
-        })
+        new webpack.optimize.CommonsChunkPlugin(
+                "button0.js",
+                ['button0.js','index']  //should be button0.js not button0, otherwise error will show
+        ),
+        new webpack.optimize.CommonsChunkPlugin(
+                "button.js",
+                ['button.js','index']
+        ),
+        new webpack.optimize.CommonsChunkPlugin(
+                "react-common.js",
+                ['button.js','button0.js','index']
+        ),
     ],
     module: {
-        loaders: [
-            {
-                test: /.js?$/,
-                loaders: ['react-hot','babel-loader'],
-                exclude: /node_modules/,
-                include: path.join(__dirname, 'components')
-
-            }
-        ]
-    },
+        loaders: [{
+            test: /\.js$/,
+            loaders: ['babel'],
+            include: path.join(__dirname, 'src')
+        }]
+    }
 };

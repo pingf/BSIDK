@@ -1,14 +1,13 @@
 'use strict';
 
-// import StyleSheet from 'react-style';
 import React from 'react';
 export default
-class Button extends React.Component {
+class Button0 extends React.Component {
     render() {
         return (
             <button
                 onClick={this.props.onclick}>
-                Hello, world1234567.
+                Hello, world.
             </button>
         );
     }
