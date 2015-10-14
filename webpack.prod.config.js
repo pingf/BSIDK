@@ -6,7 +6,8 @@ module.exports = {
     entry: {
         button: ['./src/components/button'],
         button0: ['./src/components/button0'],
-        index:'./src/index'
+        index:'./src/index',
+        reacts: ['react']
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -14,17 +15,24 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin(
-                "button0.js",
-                ['button0.js','index']  //should be button0.js not button0, otherwise error will show
-        ),
-        new webpack.optimize.CommonsChunkPlugin(
                 "button.js",
-                ['button.js','index']
+                ['button','index']
         ),
+
         new webpack.optimize.CommonsChunkPlugin(
-                "react-common.js",
-                ['button.js','button0.js','index']
+                "button0.js",
+                ['button0','index']
         ),
+         new webpack.optimize.CommonsChunkPlugin(
+                 "reacts.js",
+                 ['button.js','reacts']
+         ),
+         new webpack.optimize.CommonsChunkPlugin(
+                 "reacts.js",
+                 ['button0.js','reacts']
+         ),
+        
+
     ],
     module: {
         loaders: [{
