@@ -3,3 +3,4 @@ tmp/
 .tags_swap
 bundle/
 dist/
+*.log
