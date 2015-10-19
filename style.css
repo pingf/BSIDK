@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Rajdhani'; 
+    src: url('./fonts/fontographer.ttf') format('truetype'); 
+}
+
+body {
+    font-family: 'Rajdhani';
+    font-size: 4rem;
+}
