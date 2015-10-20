@@ -5,6 +5,7 @@ class Button extends React.Component {
 		super();
 		this.style = {
 		  color: 'green',
+		  backgroundColor: 'black'
 		};
 	}
 	render() {
