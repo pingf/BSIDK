@@ -12,7 +12,7 @@ class Counter extends React.Component {
 			<div>
 			<div>
 			<span>{value}</span>
-			<Button onClick={onIncreaseClick}>点我加一</Button>
+			<Button onClick={onIncreaseClick}>click me to increase 1</Button>
 			</div>
 			<div>
 			<Button onClick={this.test}>点我输出</Button>
