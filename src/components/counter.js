@@ -10,13 +10,13 @@ class Counter extends React.Component {
 		const { value, onIncreaseClick, click } = this.props;
 		return (
 			<div>
-			<div>
-			<span>{value}</span>
-			<Button onClick={onIncreaseClick}>click me to increase 1</Button>
-			</div>
-			<div>
-			<Button onClick={this.test}>点我输出</Button>
-			</div>
+				<div>
+					<span>{value}</span>
+					<Button onClick={onIncreaseClick}>click me to increase 1</Button>
+				</div>
+				<div>
+					<Button onClick={this.test}>点我输出</Button>
+				</div>
 			</div>
 			);
 	}
@@ -62,9 +62,9 @@ let App = connect(
 	mapDispatchToProps
 	)(Counter);
 
-	ReactDOM.render(
-		<Provider store={store}>
-		<App />
-		</Provider>,
-		document.getElementById('app')
-		);
+ReactDOM.render(
+	<Provider store={store}>
+	<App />
+	</Provider>,
+	document.getElementById('app')
+	);
