@@ -4,9 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: {
-        button: ['./src/components/button'],
-        button0: ['./src/components/button0'],
-        index:'./src/index',
+        counter: ['./src/components/counter']
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -14,7 +12,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin(
-                "reacts.js"
+                "common.js"
         ),
     ],
     module: {
