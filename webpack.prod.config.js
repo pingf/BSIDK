@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: {
-        components: ['./src/index','./src/components/opacity','./src/components/usergist']
+        components: ['./src/index','./src/components/opacity','./src/components/usergist','./src/components/card']
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -17,7 +17,7 @@ module.exports = {
             "window.jQuery": "jquery"
         }),
         new webpack.optimize.CommonsChunkPlugin(
-                "common.js"
+            "common.js"
         ),
     ],
     module: {

@@ -1,10 +1,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserGist from './components/usergist';
+import Card from './components/card';
 
 
 ReactDOM.render(
-	<UserGist source="https://api.github.com/users/octocat/gists"/>,
+	<div>
+		<Card pid='haha'/>
+		<Card pid='haha2'/>
+	</div>,
 	document.getElementById('app')
 );
