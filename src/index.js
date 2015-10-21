@@ -6,8 +6,8 @@ import Card from './components/card';
 
 ReactDOM.render(
 	<div>
-		<Card pid='haha'/>
-		<Card pid='haha2'/>
+		<Card pid='haha' title='hello' text='worldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworld'/>
+		<Card pid='haha2' title='hello' text='worldworld'/>
 	</div>,
 	document.getElementById('app')
 );
