@@ -4,13 +4,18 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: {
-        counter: ['./src/components/counter']
+        components: ['./src/index','./src/components/opacity','./src/components/usergist']
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js',
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
+        }),
         new webpack.optimize.CommonsChunkPlugin(
                 "common.js"
         ),

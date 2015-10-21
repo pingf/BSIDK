@@ -1,15 +1,10 @@
+
 import React from 'react';
-import Button from './components/button';
-import Button0 from './components/button0';
+import ReactDOM from 'react-dom';
+import UserGist from './components/usergist';
 
-React.render(
-    <div>
-        <Button onclick={clickHandler}>click me123</Button>
-        <Button0 onclick={clickHandler}>click me again</Button0>
-    </div>,
-    document.getElementById('app')
+
+ReactDOM.render(
+	<UserGist source="https://api.github.com/users/octocat/gists"/>,
+	document.getElementById('app')
 );
-
-function clickHandler(){
-    console.log('haha123');
-}
