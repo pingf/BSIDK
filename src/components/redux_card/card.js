@@ -3,12 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Radium from 'radium';
 
+import { connect } from 'react-redux';
+import { showCard, hideCard } from './actions';
+
 // @Radium
 class Card extends React.Component {
 	componentDidMount() {
-		const { pid } = this.props;
+		// const { pid } = this.props;
 		$(ReactDOM.findDOMNode(this.refs.btn)).click(function(){
-			$('#'+pid).slideToggle();
+			dispatch(hideCard())
+			// $('#'+pid).slideToggle();
 		});
 	}
 
@@ -27,4 +31,12 @@ class Card extends React.Component {
 	}
 }
 
-export default Card; 
+
+function mapStateToProps(state)  {
+  return {
+    value: state.count
+  };
+}
+
+
+export default connect(mapStateToProps)(Card); 
