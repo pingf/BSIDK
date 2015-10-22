@@ -14,13 +14,13 @@ class Card extends React.Component {
 
 	render() {
 		return (
-			<div style={{border:'2px solid'}}>
-				<div>
-					<p style={{backgroundColor:'blue',display:'inline',padding:'1px'}}>{this.props.title}</p>
-					<button ref='btn' style={{backgroundColor:'white',display:'inline'}}>+</button>
+			<div style={{display:'flex',flexDirection:'column',width:'20%'}}>
+				<div style={{display:'flex',flexDirection:'row'}}>
+					<p style={{backgroundColor:'blue',display:'inline',margin:'0',padding:'2px',width:'80%'}}>{this.props.title}</p>
+					<button ref='btn' style={{backgroundColor:'white',display:'inline',width:'15%'}}>+</button>
 				</div>
-				<div style={{border:'1px solid'}}>
-					<p id={this.props.pid}>{this.props.text}</p>
+				<div id={this.props.pid} style={{border:'1px solid',height:'100px',overflow:'scroll'}}>
+					<p style={{wordWrap:'break-word'}}>{this.props.text}</p>
 				</div>
 			</div>
 		);
