@@ -9,9 +9,9 @@ import { showCard, hideCard } from './actions';
 // @Radium
 class Card extends React.Component {
 	componentDidMount() {
-		// const { pid } = this.props;
+		const { pid,dispatch } = this.props;
 		$(ReactDOM.findDOMNode(this.refs.btn)).click(function(){
-			dispatch(hideCard())
+			dispatch(hideCard(pid))
 			// $('#'+pid).slideToggle();
 		});
 	}
