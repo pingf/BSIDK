@@ -1,117 +1,97 @@
+let injectTapEventPlugin = require("react-tap-event-plugin");
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
+import { Router, Route, Link } from 'react-router';
+import RouteHandler from 'react-router';
 
-import Sidebar from './components/sidebar';
-import MaterialTitlePanel from './material_title_panel';
-import SidebarContent from './sidebar_content';
+import mui from 'material-ui';
+let MenuItem = mui.MenuItem;
+let LeftNav = mui.LeftNav;
 
-const styles = {
-  contentHeaderMenuLink: {
-    textDecoration: 'none',
-    color: 'white',
-    padding: 8,
-  },
-  content: {
-    padding: '16px',
-  },
-};
-
-const App = React.createClass({
-  getInitialState() {
-    return {
-      docked: false,
-      open: false,
-      transitions: true,
-      touch: true,
-      shadow: true,
-      pullRight: false,
-      touchHandleWidth: 20,
-      dragToggleDistance: 30,
-    };
-  },
-
-  onSetOpen(open) {
-    this.setState({open: open});
-  },
-
-  menuButtonClick(ev) {
-    ev.preventDefault();
-    this.onSetOpen(!this.state.open);
-  },
-
-  renderPropCheckbox(prop) {
-    const toggleMethod = (ev) => {
-      const newState = {};
-      newState[prop] = ev.target.checked;
-      this.setState(newState);
-    };
-
-    return (
-      <p key={prop}>
-        <input type="checkbox" onChange={toggleMethod} checked={this.state[prop]} id={prop} />
-        <label htmlFor={prop}> {prop}</label>
-      </p>);
-  },
-
-  renderPropNumber(prop) {
-    const setMethod = (ev) => {
-      const newState = {};
-      newState[prop] = parseInt(ev.target.value, 10);
-      this.setState(newState);
-    };
-
-    return (
-      <p key={prop}>
-         {prop} <input type="number" onChange={setMethod} value={this.state[prop]} />
-      </p>);
-  },
-
+class Home extends React.Component {
   render() {
-    const sidebar = <SidebarContent />;
-
-    const contentHeader = (
-      <span>
-        {!this.state.docked &&
-         <a onClick={this.menuButtonClick} href="#" style={styles.contentHeaderMenuLink}>=</a>}
-        <span> React Sidebar</span>
-      </span>);
-
-    const sidebarProps = {
-      sidebar: sidebar,
-      docked: this.state.docked,
-      open: this.state.open,
-      touch: this.state.touch,
-      shadow: this.state.shadow,
-      pullRight: this.state.pullRight,
-      touchHandleWidth: this.state.touchHandleWidth,
-      dragToggleDistance: this.state.dragToggleDistance,
-      transitions: this.state.transitions,
-      onSetOpen: this.onSetOpen,
-    };
-
     return (
-      <Sidebar {...sidebarProps}>
-        <MaterialTitlePanel title={contentHeader}>
-          <div style={styles.content}>
-            <p>React Sidebar is a sidebar component for React. It offers the following features:</p>
-            <ul>
-              <li>Have the sidebar slide over main content</li>
-              <li>Dock the sidebar next to the content</li>
-              <li>Touch enabled: swipe to open and close the sidebar</li>
-              <li>Easy to combine with media queries for auto-docking (<a href="responsive_example.html">see example</a>)</li>
-              <li>Sidebar and content passed in as PORCs (Plain Old React Components)</li>
-              <li><a href="https://github.com/balloob/react-sidebar">Source on GitHub</a> (MIT license)</li>
-              <li>Only dependency is React</li>
-            </ul>
-            <p><a href="https://github.com/balloob/react-sidebar#installation">Instructions how to get started.</a></p>
-            <p><b>Current rendered sidebar properties:</b></p>
-            {['open', 'docked', 'transitions', 'touch', 'shadow', 'pullRight'].map(this.renderPropCheckbox)}
-            {['touchHandleWidth', 'dragToggleDistance'].map(this.renderPropNumber)}
-          </div>
-        </MaterialTitlePanel>
-      </Sidebar>
-    );
-  },
-});
+		<div>
+	        <h2 style={styles.headline}>Examples</h2>
+	        <p>
+	          There are 2 projects that you can look at to get started. They can be found
+	          in the <a href="https://github.com/callemall/material-ui/tree/master/examples">examples folder</a>. These
+	          projects are basic examples that show how to consume material-ui components in your own project.
+	          The first project uses <a href="http://browserify.org/">browserify</a> for module bundling 
+	          and <a href="http://gulpjs.com/">gulp</a> for JS task automation, while the second project 
+	          uses <a href="http://webpack.github.io">webpack</a> for module bundling and building.
+	        </p>
+	        <p>
+	          The source code for this documentation site is also included in the repository. This is a slightly more complex project that 
+	          also uses webpack, and contains
+	          examples of every material-ui component. Check out the <a href="https://github.com/callemall/material-ui/tree/master/docs">docs folder</a> for 
+	          build instructions.
+	        </p>
+	    </div>
+	);
+  }
+}
+ 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+class App extends React.Component {
+	constructor(){
+		super();
+		console.log(MenuItem);
+		this.menuItems = [
+			{ route: 'get-started', text: 'Get Started' },
+			{ route: 'customization', text: 'Customization' },
+			{ route: '/home', text: 'Home' },
+			{ route: 'components', text: 'Components' },
+			{ type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+
+			// { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+			// {
+			// 	type: MenuItem.Types.LINK,
+			// 	payload: 'https://github.com/callemall/material-ui',
+			// 	text: 'GitHub'
+			// },
+			// {
+			// 	text: 'Disabled',
+			// 	disabled: true
+			// },
+			// {
+			// 	type: MenuItem.Types.LINK,
+			// 	payload: 'https://www.google.com',
+			// 	text: 'Disabled Link',
+			// 	disabled: true
+			// }
+		];
+		// this.refs.leftNav.toggle();
+		// this._handleClick = this._handleClick.bind(this);
+  //   	this._getSelectedIndex = this._getSelectedIndex.bind(this);
+		this._onLeftNavChange = this._onLeftNavChange.bind(this);
+	}
+
+	_onLeftNavChange(e, key, payload) {
+		console.log(key);
+		this.context.router.transitionTo(payload.route);
+	}
+	render() {
+		return (
+			<div>
+				<LeftNav ref="leftNav" docked={true} menuItems={this.menuItems}/>
+			</div>
+			);
+	}
+}
+
+ReactDom.render((
+    <Router>
+	    <Route path="/" component={App}>
+	      <Route path="home" component={Home}/>
+	    </Route>
+    </Router>
+), document.getElementById('app'));
+// render(<App />, document.getElementById('app'));

@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: {
-        components: ['./src/index','./src/components/sidebar','./src/components/usergist','./src/components/redux_card/card']
+        components: ['./src/index']//,'./src/components/mbutton','./src/components/usergist','./src/components/redux_card/card']
     },
     output: {
         path: path.join(__dirname, 'dist'),
