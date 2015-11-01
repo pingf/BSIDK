@@ -25,7 +25,6 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel',
             include: path.join(__dirname, 'src'),
-            query:{stage: 0}
         }]
     }
 };
