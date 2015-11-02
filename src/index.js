@@ -63,7 +63,7 @@ class Hello extends React.Component{
     console.log(this.history)
     console.log(this.context.router)
     // this.router.transitionTo(payload.route);
-    history.pushState(null,payload.route)
+    this.context.history.pushState(null,payload.route)
   }
   render() {
   	var menuItems = [
@@ -89,7 +89,8 @@ Hello.contextTypes = {
     router: React.PropTypes.func.isRequired
 }; 
 Hello.contextTypes = {
-    location: React.PropTypes.object
+    location: React.PropTypes.object,
+    history: React.PropTypes.object
 };
 
 ReactDOM.render(
