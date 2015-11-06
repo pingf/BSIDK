@@ -5,6 +5,7 @@ const styles = {
     fontFamily: '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
     fontWeight: 300,
   },
+
   header: {
     backgroundColor: '#03a9f4',
     color: 'white',
