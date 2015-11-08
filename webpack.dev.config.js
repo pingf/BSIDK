@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'eval',
-    entry: './src/index',
+    entry: ['./src/index','./src/components/left_nav_trigger'],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',

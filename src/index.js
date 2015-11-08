@@ -1,16 +1,7 @@
-// import ReactDom from 'react-dom'
-
-// ReactDom.render((
-// 	<div>
-// 	<p>hello world</p>
-// 	</div>
-// ) , document.getElementById('app'));
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
 injectTapEventPlugin();
 
 import mui from 'material-ui';
-let MenuItem = mui.MenuItem;
 let LeftNav = mui.LeftNav;
 
 import React from 'react';
@@ -20,10 +11,14 @@ import ReactDOM from 'react-dom';
 import ReactRouter from 'react-router'
 import { Router, Route, IndexRoute, Link } from 'react-router'
 
+
+import LeftNavTrigger from './components/left_nav_trigger'
+
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 let history = createBrowserHistory();
-history.replaceState(null, '/home');
+history.replaceState(null, '/');
 
+let MenuItem = mui.MenuItem;
 
 class About extends React.Component {
     render() {
@@ -38,28 +33,41 @@ class Home extends React.Component {
 }
 
 
-class Hello extends React.Component{
-  _onLeftNavChange(e, key, payload) {
-    this.context.history.pushState(null,payload.route)
-  }
-  render() {
-  	var menuItems = [
-			{ route: 'get-started', text: 'Get Started' },
-			{ route: 'customization', text: 'Customization' },
-			{ route: '/home', text: 'Home' },
-			{ route: '/about', text: 'About' },
-			{ route: 'components', text: 'Components' },
-			{ type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-			{ type: MenuItem.Types.LINK, payload: 'home', text: 'Home' },
-	];
-    return (
-    	<div>
-    	<h1>Hello world</h1>
-    	{this.props.children}
-    	<LeftNav ref="leftNav" docked={true} openRight={true} menuItems={menuItems} onChange={this._onLeftNavChange.bind(this)}/>
-    	</div>
-    );
-  }
+class Hello extends React.Component {
+    _onLeftNavChange(e, key, payload) {
+        this.context.history.pushState(null, payload.route)
+    }
+
+    render() {
+        var style_left = {
+            float: 'left',
+            width:'20%',
+            background:'#c9c'
+        };
+        var style_main = {
+            float: 'left',
+            width:'50%',
+            background:'#c9c'
+        };
+        var style_footer = {
+            clear: 'both',
+            background:'yellow'
+        };
+        return (
+            <div id="content">
+                <nav style={style_left}>
+                    <LeftNavTrigger></LeftNavTrigger>
+                </nav>
+                <section id="main" style={style_main}>
+                    <h1>Hello world</h1>
+                    {this.props.children}
+                </section>
+                <nav style={style_footer}>
+                    <p>haha</p>
+                </nav>
+            </div>
+        );
+    }
 }
 
 Hello.contextTypes = {
@@ -74,8 +82,8 @@ ReactDOM.render(
     <Router history={history}>
         <Route path='/' component={Hello}>
             <IndexRoute component={Home}/>
-            <Route path='home' component={Home}/>
             <Route path='about' component={About}/>
+            <Route path='home' component={Home}/>
         </Route>
     </Router>
     ,
